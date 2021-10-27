@@ -19,24 +19,24 @@ int main(int argn, char *argv[], char *arge[]) {
     } else {
         int file = open(argv[1], O_RDONLY);
         if (file != -1) {
-            for(int i = 1; i<150; i++){
+            for(int  CompteurTableau= 1; CompteurTableau<150; CompteurTableau++){
                 *tablo = read(file, tablo, 150*sizeof(float));
             }
             printf("Espece Iris Setosa :\n");
-            for(int i=1, y=0; i<=50; i++, y++){ // pas bonne valeur pour le 1er (J'ai mis 50 et ça donne des trucs)
-                Tab[y] = tablo[i];
+            for(int CompteurTabSetosa=1, y=0; CompteurTabSetosa<=50; CompteurTabSetosa++, y++){ // pas bonne valeur pour le 1er (J'ai mis 50 et ça donne des trucs)
+                Tab[y] = tablo[CompteurTabSetosa];
             }
             affiche(Tab);
 
             printf("Espece Iris Versicolor :\n");
-            for(int i=50, y=0; i<=99; i++, y++){
-                Tab[y] = tablo[i];
+            for(int CompteurTabVersicolor=50, y=0; CompteurTabVersicolor<=99; CompteurTabVersicolor++, y++){
+                Tab[y] = tablo[CompteurTabVersicolor];
             }
             affiche(Tab);
 
             printf("Espece Iris Virginica :\n");
-            for(int i=100, y=0; i<=149; i++, y++){
-                Tab[y] = tablo[i];
+            for(int CompteurTabVirginica=100, y=0; CompteurTabVirginica<=149; CompteurTabVirginica++, y++){
+                Tab[y] = tablo[CompteurTabVirginica];
             }
             affiche(Tab);
         } else {
