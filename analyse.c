@@ -4,17 +4,16 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
-float Tab1[50];
-float Tab2[50];
-float Tab3[50];
+float Tab[50];
 
-float moyenne(float[]);
-float mini(float[]);
-float maxi(float[]);
+/* prototypes des fonctions externes */
+// float moyenne(float[]);  Inutile car pas appellé dans cette cette classe.
+// float mini(float[]);     Inutile car pas appellé dans cette cette classe.
+// float maxi(float[]);     Inutile car pas appellé dans cette cette classe.
+void affiche(float[]);
 
 int main(int argn, char *argv[], char *arge[]) {
     float *tablo = (float*) malloc(150 * sizeof(float));
-
     if(argn < 2){
         printf("Un argument est requis\n");
         return 1;
@@ -23,31 +22,24 @@ int main(int argn, char *argv[], char *arge[]) {
         if (file != -1) {
             for(int i = 1; i<150; i++){
                 *tablo = read(file, tablo, 150*sizeof(float));
-                printf("%d: %f\n", i, tablo[i]);
             }
             printf("Espece Iris Setosa :\n");
-            for(int i=1, y=0; i<=49; i++, y++){ //pas bonne valeur pour le 1er
-                Tab1[y] = tablo[i];
+            for(int i=1, y=0; i<=50; i++, y++){ // pas bonne valeur pour le 1er (J'ai mis 50 et ça donne des trucs)
+                Tab[y] = tablo[i];
             }
-            printf("Moyenne: %f\n", moyenne(Tab1));
-            printf("Maximum: %f\n", maxi(Tab1));
-            printf("Minimum: %f\n", mini(Tab1));
+            affiche(Tab);
 
             printf("Espece Iris Versicolor :\n");
             for(int i=50, y=0; i<=99; i++, y++){
-                Tab2[y] = tablo[i];
+                Tab[y] = tablo[i];
             }
-            printf("Moyenne: %f\n", moyenne(Tab2));
-            printf("Maximum: %f\n", maxi(Tab2));
-            printf("Minimum: %f\n", mini(Tab2));
+            affiche(Tab);
 
             printf("Espece Iris Virginica :\n");
             for(int i=100, y=0; i<=149; i++, y++){
-                Tab3[y] = tablo[i];
+                Tab[y] = tablo[i];
             }
-            printf("Moyenne: %f\n", moyenne(Tab3));
-            printf("Maximum: %f\n", maxi(Tab3));
-            printf("Minimum: %f\n", mini(Tab3));
+            affiche(Tab);
         } else {
             perror (argv[1]);
             return 2;
@@ -55,32 +47,5 @@ int main(int argn, char *argv[], char *arge[]) {
     }
     return 0;
 }
-
-float moyenne(float T[]){
-    float somme=0;
-    for(int i = 0; i <= 50; i++){
-        somme += T[i];
-    }
-    return somme/50;
-}
-
-float maxi(float T[]){
-    float max = T[1];
-    for(int i = 0; i < 50; i++) {
-        if(max < T[i])  
-            max = T[i];
-    }
-    return max;
-}
-
-float mini(float T[]){
-    float minimum;
-    minimum = T[1];
-    for(int i = 0; i < 50; i++) {
-        if(T[i] < minimum)
-            minimum = T[i];
-    }
-    return minimum;
-}
-// gcc analyse.c -o analyse -Wall
+// gcc analyse.c moyenne.c maximum.c minimum.c affichage.c -o analyse -Wall
 // .\analyse.exe iris.dat
