@@ -4,16 +4,15 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 
-float Tab[50];
-
 /* prototypes des fonctions externes */
-// float moyenne(float[]);  Inutile car pas appellé dans cette cette classe.
-// float mini(float[]);     Inutile car pas appellé dans cette cette classe.
-// float maxi(float[]);     Inutile car pas appellé dans cette cette classe.
+// float moyenne(float[]);  Inutile car pas appellée dans cette classe.
+// float mini(float[]);     Inutile car pas appellée dans cette classe.
+// float maxi(float[]);     Inutile car pas appellée dans cette classe.
 void affiche(float[]);
 
 int main(int argn, char *argv[], char *arge[]) {
     float *tablo = (float*) malloc(150 * sizeof(float));
+    float Tab[50];
     if(argn < 2){
         printf("Un argument est requis\n");
         return 1;
