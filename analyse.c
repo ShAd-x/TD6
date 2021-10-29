@@ -5,6 +5,9 @@
 #include <fcntl.h>
 
 /* prototypes des fonctions externes */
+float moyenne(float[]);  
+float mini(float[]);     
+float maxi(float[]);     
 void affiche(float[]);
 
 int main(int argn, char *argv[], char *arge[]) {
@@ -16,10 +19,11 @@ int main(int argn, char *argv[], char *arge[]) {
     } else {
         int file = open(argv[1], O_RDONLY);
         if (file != -1) { // check si le fichier est accessible
-            *tablo = read(file, tablo, 150*sizeof(float));
-            
+            for(int  CompteurTableau= 1; CompteurTableau<150; CompteurTableau++){
+                *tablo = read(file, tablo, 150*sizeof(float));
+            }
             printf("Espece Iris Setosa :\n");
-            for(int CompteurTabSetosa=1, y=0; CompteurTabSetosa<=50; CompteurTabSetosa++, y++){ // permet d'afficher les valeurs concernant L'Iris Setosa
+            for(int CompteurTabSetosa=1, y=0; CompteurTabSetosa<50; CompteurTabSetosa++, y++){ // permet d'afficher les valeurs concernant L'Iris Setosa
                 Tab[y] = tablo[CompteurTabSetosa];
             }
             affiche(Tab);
